@@ -29,3 +29,36 @@ document.addEventListener("click", (e) => {
 
     }
 })
+
+// Animación de corazones cayendo
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-fall';
+
+    // Posición aleatoria
+    heart.style.left = Math.random() * 100 + '%';
+
+    // Duración y tamaño aleatorios
+    const duration = 8 + Math.random() * 4;
+    const size = 10 + Math.random() * 10;
+    heart.style.animationDuration = duration + 's';
+    heart.style.width = size + 'px';
+    heart.style.height = size + 'px';
+
+    document.body.appendChild(heart);
+
+    // Eliminar el corazón después de la animación
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
+}
+
+// Crear corazones cada 1.5 segundos
+setInterval(createHeart, 1500);
+
+// Crear algunos corazones iniciales
+setTimeout(() => {
+    for (let i = 0; i < 3; i++) {
+        setTimeout(createHeart, i * 300);
+    }
+}, 100);
